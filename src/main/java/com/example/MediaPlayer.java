@@ -1,30 +1,25 @@
 package com.example;
 
 public class MediaPlayer {
-    private boolean isPlaying;
+    private MediaPlayerState state;
 
     public MediaPlayer() {
-        this.isPlaying = false;
+        this.state = new MediaPlayerPausedState();
+    }
+
+    public void setState(MediaPlayerState state) {
+        this.state = state;
     }
 
     public void pressButton() {
-        if (this.isPlaying) {
-            pause();
-            this.isPlaying = false;
-        } else {
-            play();
-            this.isPlaying = true;
-        }
+        state.pressButton(this);
     }
 
     public void play() {
-        System.out.println("Playing");
-        System.out.println("Displaying pause icon");
+        state.play(this);
     }
 
     public void pause() {
-        System.out.println("Paused");
-        System.out.println("Displaying play icon");
+        state.pause(this);
     }
-
 }
