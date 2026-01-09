@@ -20,4 +20,7 @@ public class GroupTicket implements TicketElement {
         return elements;
     }
 
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }
